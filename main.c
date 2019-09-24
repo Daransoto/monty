@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <string.h>
 /**
 * main - Entry point.
 * @argc: Argument count.
@@ -47,7 +46,8 @@ stack_t **stack)
 {
 	int i, len = strlen(Line_buffer);
 
-	Line_buffer[len - 1] = 0;
+	if (Line_buffer[len - 1] == '\n')
+		Line_buffer[len - 1] = 0;
 	if (!strcmp(Line_buffer, "nop"))
 		return;
 	if (!strcmp(Line_buffer, "queue"))
