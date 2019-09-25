@@ -73,7 +73,7 @@ stack_t **stack)
 	}
 	if (i == 14)
 	{
-		sprintf(message, "L%d: unknown instruction %s\n", line_number, Line_buffer);
+		sprintf(message, "L%d: unknown instruction %s", line_number, Line_buffer);
 		error_mes(message, "", stack);
 	}
 	return;
