@@ -87,7 +87,8 @@ stack_t **stack)
 short isnumber(char *str)
 {
 	short i;
-
+	if (*str == '\n')
+		return (0);
 	for (i = 0; *(str + i) && *(str + i) != '\n'; i++)
 		if (!isdigit(*(str + i)) && *(str + i) != '-')
 			return (0);
