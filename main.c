@@ -48,7 +48,7 @@ stack_t **stack)
 
 	if (Line_buffer[len - 1] == '\n')
 		Line_buffer[len - 1] = 0;
-	if (!strcmp(Line_buffer, "nop"))
+	if (!strcmp(Line_buffer, "nop") || !strcmp(Line_buffer, ""))
 		return;
 	if (!strcmp(Line_buffer, "queue"))
 	{
