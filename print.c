@@ -56,7 +56,7 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || len_stack < 1)
 	{
-		sprintf(message, "L%u: can't pint, stack empty\n", line_number);
+		sprintf(message, "L%u: can't pint, stack empty", line_number);
 		error_mes(message, "", stack);
 	}
 	printf("%d\n", (*stack)->n);
@@ -78,13 +78,13 @@ void pchar(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 	if (temp == NULL)
 	{
-		sprintf(message, "L%u: can't pchar, stack empty\n", line_number);
+		sprintf(message, "L%u: can't pchar, stack empty", line_number);
 		error_mes(message, "", stack);
 	}
 	i = temp->n;
 	if (!(is_ascii(i)))
 	{
-		sprintf(message, "L%u: can't pchar, value out of range\n", line_number);
+		sprintf(message, "L%u: can't pchar, value out of range", line_number);
 		error_mes(message, "", stack);
 	}
 	putchar(i);

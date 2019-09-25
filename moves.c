@@ -79,7 +79,7 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	if (len_stack(*stack) < 2 || *stack == NULL)
 	{
-		sprintf(message, "L%u: can't swap, stack too short\n", line_number);
+		sprintf(message, "L%u: can't swap, stack too short", line_number);
 		error_mes(message, "", stack);
 	}
 
