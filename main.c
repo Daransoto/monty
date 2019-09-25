@@ -1,6 +1,6 @@
 #include "monty.h"
 #include <ctype.h>
-char *Line_buffer = 0;
+glob_t my_global;
 /**
 * main - Entry point.
 * @argc: Argument count.
@@ -14,25 +14,23 @@ int main(int argc, char *argv[])
 	{"mul", mul}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},
 	{"rotr", rotr}};
 	int line_number = 1, getl_res = 0;
-	FILE *file;
 	size_t buf_size = 0;
 	stack_t *stack = NULL;
 
 	if (argc != 2)
 		error_mes("USAGE: monty file", "", &stack);
-	file = fopen(argv[1], "r");
-	if (!file)
+	my_global.file = fopen(argv[1], "r");
+	if (!my_global.file)
 		error_mes("Error: Can't open file ", argv[1], &stack);
 	while (1)
 	{
-		getl_res = getline(&Line_buffer, &buf_size, file);
+		getl_res = getline(&my_global.Line_buffer, &buf_size, my_global.file);
 		if (getl_res == EOF)
 			break;
-		check_opc(strtok(Line_buffer, " \t"), &opcodes, line_number, &stack);
+		check_opc(strtok(my_global.Line_buffer, " \t"), &opcodes, line_number, &stack);
 		line_number++;
 	}
 	free_all(&stack);
-	fclose(file);
 	return (EXIT_SUCCESS);
 }
 /**

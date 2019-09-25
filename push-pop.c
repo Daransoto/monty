@@ -11,13 +11,13 @@ void push_s(stack_t **stack, unsigned int line_number)
 
 	if (!stack)
 		error_mes("No stack present.", "", stack);
-	new = malloc(sizeof(stack_t));
-	if (!new)
-		error_mes("Error: malloc failed", "", stack);
 	arg = strtok(NULL, " \t");
 	sprintf(message, "L%d: usage: push integer", line_number);
 	if (!arg || !isnumber(arg))
 		error_mes(message, "", stack);
+	new = malloc(sizeof(stack_t));
+	if (!new)
+		error_mes("Error: malloc failed", "", stack);
 	new->n = atoi(arg);
 	new->next = *stack;
 	new->prev = NULL;
@@ -37,13 +37,13 @@ void push_q(stack_t **stack, unsigned int line_number)
 
 	if (!stack)
 		error_mes("No stack present.", "", stack);
-	new = malloc(sizeof(stack_t));
-	if (!new)
-		error_mes("Error: malloc failed", "", stack);
 	arg = strtok(NULL, " \t");
 	sprintf(message, "L%d: usage: push integer", line_number);
 	if (!arg || !isnumber(arg))
 		error_mes(message, "", stack);
+	new = malloc(sizeof(stack_t));
+	if (!new)
+		error_mes("Error: malloc failed", "", stack);
 	new->n = atoi(arg);
 	new->next = NULL;
 	if (!*stack)
@@ -107,5 +107,6 @@ void free_all(stack_t **stack)
 		*stack = (*stack)->next;
 		free(temp);
 	}
-	free(Line_buffer);
+	free(my_global.Line_buffer);
+	fclose(my_global.file);
 }

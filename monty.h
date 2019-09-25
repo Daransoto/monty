@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-extern char *Line_buffer;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -19,6 +18,18 @@ typedef struct stack_s
 	struct stack_s *prev;
 	struct stack_s *next;
 } stack_t;
+/**
+* struct glob - Structure for global variable (Is this cheating? xD).
+* @Line_buffer: Result of getline on file.
+* @file: File to read.
+*/
+typedef struct glob
+{
+	char *Line_buffer;
+	FILE *file;
+} glob_t;
+
+extern glob_t my_global;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
