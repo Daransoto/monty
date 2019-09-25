@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+extern char *Line_buffer;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -47,5 +48,7 @@ void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 void check_opc(char *, instruction_t (*o)[], int, stack_t **);
-void error_mes(char *mess, char *arg);
+void error_mes(char *mess, char *arg, stack_t **stack);
+void free_all(stack_t **stack);
+short isnumber(char *str);
 #endif /* _MONTY_H */

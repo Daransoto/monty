@@ -10,14 +10,14 @@ void push_s(stack_t **stack, unsigned int line_number)
 	char *arg, message[100];
 
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	new = malloc(sizeof(stack_t));
 	if (!new)
-		error_mes("Error: malloc failed", "");
-	arg = strtok(NULL, " ");
+		error_mes("Error: malloc failed", "", stack);
+	arg = strtok(NULL, " \t");
 	sprintf(message, "L%d: usage: push integer", line_number);
-	if (!arg)
-		error_mes(message, "");
+	if (!arg || !isnumber(arg))
+		error_mes(message, "", stack);
 	new->n = atoi(arg);
 	new->next = *stack;
 	new->prev = NULL;
@@ -36,14 +36,14 @@ void push_q(stack_t **stack, unsigned int line_number)
 	char *arg, message[100];
 
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	new = malloc(sizeof(stack_t));
 	if (!new)
-		error_mes("Error: malloc failed", "");
-	arg = strtok(NULL, " ");
+		error_mes("Error: malloc failed", "", stack);
+	arg = strtok(NULL, " \t");
 	sprintf(message, "L%d: usage: push integer", line_number);
-	if (!arg)
-		error_mes(message, "");
+	if (!arg || !isnumber(arg))
+		error_mes(message, "", stack);
 	new->n = atoi(arg);
 	new->next = NULL;
 	if (!*stack)
@@ -68,10 +68,10 @@ void pop(stack_t **stack, unsigned int line_number)
 	char message[100];
 
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	sprintf(message, "L%d: can't pop an empty stack", line_number);
 	if (!*stack)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 
 	*stack = iterator->next;
 	if (iterator->next)
@@ -83,8 +83,9 @@ void pop(stack_t **stack, unsigned int line_number)
 * @mess: Message to print.
 * @arg: Additional argument.
 */
-void error_mes(char *mess, char *arg)
+void error_mes(char *mess, char *arg, stack_t **stack)
 {
+	free_all(stack);
 	fprintf(stderr, "%s%s\n", mess, arg);
 	exit(EXIT_FAILURE);
 }
@@ -99,10 +100,10 @@ void free_all(stack_t **stack)
 {
 	stack_t *temp;
 
-	while (*stack != NULL)
+	while (*stack)
 	{
 		temp = *stack;
-		*stack = *stack->next;
+		*stack = (*stack)->next;
 		free(temp);
 	}
 	free(Line_buffer);

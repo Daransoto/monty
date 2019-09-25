@@ -80,7 +80,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (len_stack(*stack) < 2 || *stack == NULL)
 	{
 		sprintf(message, "L%u: can't swap, stack too short\n", line_number);
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	}
 
 	first = *stack;
@@ -112,7 +112,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 		del_node_index(stack, 0);
 		new = malloc(sizeof(*new));
 		if (!new)
-			error_mes("Error: malloc failed", "");
+			error_mes("Error: malloc failed", "", stack);
 		root = *stack;
 		new->n = temp;
 		new->next = NULL;

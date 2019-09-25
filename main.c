@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <ctype.h>
+char *Line_buffer = 0;
 /**
 * main - Entry point.
 * @argc: Argument count.
@@ -13,24 +15,23 @@ int main(int argc, char *argv[])
 	{"rotr", rotr}};
 	int line_number = 1, getl_res = 0;
 	FILE *file;
-	char *Line_buffer = 0;
 	size_t buf_size = 0;
 	stack_t *stack = NULL;
 
 	if (argc != 2)
-		error_mes("USAGE: monty file", "");
+		error_mes("USAGE: monty file", "", &stack);
 	file = fopen(argv[1], "r");
 	if (!file)
-		error_mes("Error: Can't open file ", argv[1]);
+		error_mes("Error: Can't open file ", argv[1], &stack);
 	while (1)
 	{
 		getl_res = getline(&Line_buffer, &buf_size, file);
 		if (getl_res == EOF)
 			break;
-		check_opc(strtok(Line_buffer, " "), &opcodes, line_number, &stack);
+		check_opc(strtok(Line_buffer, " \t"), &opcodes, line_number, &stack);
 		line_number++;
 	}
-	free(Line_buffer);
+	free_all(&stack);
 	fclose(file);
 	return (EXIT_SUCCESS);
 }
@@ -45,6 +46,7 @@ void check_opc(char *Line_buffer, instruction_t (*opcodes)[], int line_number,
 stack_t **stack)
 {
 	int i, len = strlen(Line_buffer);
+	char message[100];
 
 	if (Line_buffer[len - 1] == '\n')
 		Line_buffer[len - 1] = 0;
@@ -72,9 +74,23 @@ stack_t **stack)
 	}
 	if (i == 14)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, Line_buffer);
-		exit(EXIT_FAILURE);
+		sprintf(message, "L%d: unknown instruction %s\n", line_number, Line_buffer);
+		error_mes(message, "", stack);
 	}
 	return;
 
+}
+/**
+* isnumber - checks if a string is a number.
+* @str: String to check.
+* Return: 1 if is a number, 0 if not.
+*/
+short isnumber(char *str)
+{
+	short i;
+
+	for (i = 0; str + i && *(str + i) != '\n'; i++)
+		if (!isdigit(*(str + i)))
+			return (0);
+	return (1);
 }

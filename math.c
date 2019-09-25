@@ -10,9 +10,9 @@ void add(stack_t **stack, unsigned int line_number)
 
 	sprintf(message, "L%d: can't add, stack too short", line_number);
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	if (!*stack || !(*stack)->next)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	(*stack)->next->n += (*stack)->n;
 	pop(stack, line_number);
 }
@@ -27,9 +27,9 @@ void sub(stack_t **stack, unsigned int line_number)
 
 	sprintf(message, "L%d: can't sub, stack too short", line_number);
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	if (!*stack || !(*stack)->next)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	(*stack)->next->n -= (*stack)->n;
 	pop(stack, line_number);
 }
@@ -44,12 +44,12 @@ void divi(stack_t **stack, unsigned int line_number)
 
 	sprintf(message, "L%d: can't div, stack too short", line_number);
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	if (!*stack || !(*stack)->next)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	sprintf(message, "L%d: division by zero", line_number);
 	if (!(*stack)->n)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	(*stack)->next->n /= (*stack)->n;
 	pop(stack, line_number);
 }
@@ -64,9 +64,9 @@ void mul(stack_t **stack, unsigned int line_number)
 
 	sprintf(message, "L%d: can't mul, stack too short", line_number);
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	if (!*stack || !(*stack)->next)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	(*stack)->next->n *= (*stack)->n;
 	pop(stack, line_number);
 }
@@ -81,12 +81,12 @@ void mod(stack_t **stack, unsigned int line_number)
 
 	sprintf(message, "L%d: can't mod, stack too short", line_number);
 	if (!stack)
-		error_mes("No stack present.", "");
+		error_mes("No stack present.", "", stack);
 	if (!*stack || !(*stack)->next)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	sprintf(message, "L%d: division by zero", line_number);
 	if (!(*stack)->n)
-		error_mes(message, "");
+		error_mes(message, "", stack);
 	(*stack)->next->n %= (*stack)->n;
 	pop(stack, line_number);
 }
