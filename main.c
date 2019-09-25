@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
 		getl_res = getline(&my_global.Line_buffer, &buf_size, my_global.file);
 		if (getl_res == EOF)
 			break;
-		check_opc(strtok(my_global.Line_buffer, " \t"), &opcodes, line_number, &stack);
+		check_opc(strtok(my_global.Line_buffer, " \t"), &opcodes, line_number,
+			&stack);
 		line_number++;
 	}
 	free_all(&stack);
