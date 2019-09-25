@@ -82,6 +82,7 @@ void pop(stack_t **stack, unsigned int line_number)
 * error_mes - Prints error message and exits with failure.
 * @mess: Message to print.
 * @arg: Additional argument.
+* @stack: stack to free.
 */
 void error_mes(char *mess, char *arg, stack_t **stack)
 {
