@@ -88,3 +88,22 @@ void error_mes(char *mess, char *arg)
 	fprintf(stderr, "%s%s\n", mess, arg);
 	exit(EXIT_FAILURE);
 }
+
+/**
+* free_all - Frees the stack
+* @stack: stack to free
+* Return: Nothing (void)
+*/
+
+void free_all(stack_t **stack)
+{
+	stack_t *temp;
+
+	while (*stack != NULL)
+	{
+		temp = *stack;
+		*stack = *stack->next;
+		free(temp);
+	}
+	free(Line_buffer);
+}

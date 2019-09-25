@@ -105,7 +105,7 @@ user@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ ./monty test/b.m
 * mul - Multiplies the second top element of the stack with the top element of the stack.
 * mod - Computes the rest of the division of the second top element of the stack by the top element of the stack.
 * stack - Sets the format of the data to a stack (LIFO). This is the default behavior of the program.
-* queque - Sets the format of the data to a queue (FIFO).
+* queue - Sets the format of the data to a queue (FIFO).
 
 
 
