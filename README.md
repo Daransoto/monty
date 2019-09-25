@@ -1,4 +1,4 @@
-# 0x18. C - Stacks, Queues - LIFO, FIFO
+# 0x19. C - Stacks, Queues - LIFO, FIFO
 
 ## The Monty language
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.
@@ -8,7 +8,7 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 Files containing Monty byte codes usually have the .m extension. Most of the industry uses this standard but it is not required by the specification of the language. There is not more than one instruction per line. There can be any number of spaces before or after the opcode and its argument:
 
 ```
-julien@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ cat -e bytecodes/000.m
+julien@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ cat -e bytecodes/000.m
 push 0$
 push 1$
 push 2$
@@ -18,12 +18,12 @@ push 4$
     push 5    $
       push    6        $
 pall$
-julien@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$
+julien@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$
 ```
 
 Monty byte code files can contain blank lines (empty or made of spaces only, and any additional text after the opcode or its required argument is not taken into account:
 ```
-julien@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ cat -e bytecodes/001.m
+julien@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ cat -e bytecodes/001.m
 push 0 Push 0 onto the stack$
 push 1 Push 1 onto the stack$
 $
@@ -39,7 +39,7 @@ $
       push    6        $
 $
 pall This is the end of our program. Monty is awesome!$
-julien@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$
+julien@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$
 ```
 ## Setup
 
@@ -56,7 +56,36 @@ You can execute the program using:
 where file.m is the file to test the opcodes
 
 ## Examples
+You can find the example monty byte code files in (test)[https://github.com/Daransoto/monty/tree/master/test] and execute with the command above.
 
+* push and pall example:
+```
+user@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ cat -e test/b.m
+push 0$
+push 1$
+push 2$
+  push 3$
+                   pall    $
+push 4$
+    push 5    $
+      push    6        $
+pall$
+```
+The output will be:
+```
+user@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ ./monty test/b.m
+3
+2
+1
+0
+6
+5
+4
+3
+2
+1
+0
+```
 
 ## Opcodes
 
