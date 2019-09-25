@@ -53,7 +53,7 @@ You can execute the program using:
 ```
 ./monty file.m
 ```
-where file.m is the file to prove the opcodes
+where file.m is the file to test the opcodes
 
 ## Examples
 
