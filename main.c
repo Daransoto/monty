@@ -88,7 +88,7 @@ short isnumber(char *str)
 {
 	short i;
 
-	for (i = 0; str + i && *(str + i) != '\n'; i++)
+	for (i = 0; *(str + i) && *(str + i) != '\n'; i++)
 		if (!isdigit(*(str + i)) && *(str + i) != '-')
 			return (0);
 	return (1);
