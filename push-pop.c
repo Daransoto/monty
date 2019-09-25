@@ -107,6 +107,8 @@ void free_all(stack_t **stack)
 		*stack = (*stack)->next;
 		free(temp);
 	}
-	free(my_global.Line_buffer);
-	fclose(my_global.file);
+	if (my_global.Line_buffer)
+		free(my_global.Line_buffer);
+	if (my_global.file)
+		fclose(my_global.file);
 }
