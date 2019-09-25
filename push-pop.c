@@ -1,4 +1,9 @@
 #include "monty.h"
+/**
+* push_s - Push on a stack.
+* @stack: Stack.
+* @line_number: Line number.
+*/
 void push_s(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
@@ -20,6 +25,11 @@ void push_s(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = new;
 	*stack = new;
 }
+/**
+* push_q - Push on a queue.
+* @stack: Stack.
+* @line_number: Line number.
+*/
 void push_q(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new, *h = *stack;
@@ -47,6 +57,11 @@ void push_q(stack_t **stack, unsigned int line_number)
 	h->next = new;
 	new->prev = h;
 }
+/**
+* pop - Deletes top item on a stack or queue.
+* @stack: Stack.
+* @line_number: Line number.
+*/
 void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *iterator = *stack;
@@ -63,6 +78,11 @@ void pop(stack_t **stack, unsigned int line_number)
 		iterator->next->prev = NULL;
 	free(iterator);
 }
+/**
+* error_mes - Prints error message and exits with failure.
+* @mess: Message to print.
+* @arg: Additional argument.
+*/
 void error_mes(char *mess, char *arg)
 {
 	fprintf(stderr, "%s%s\n", mess, arg);
