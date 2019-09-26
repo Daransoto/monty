@@ -60,33 +60,46 @@ You can find the example monty byte code files in (test)[https://github.com/Dara
 
 * push and pall example:
 ```
-user@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ cat -e test/b.m
-push 0$
-push 1$
-push 2$
-  push 3$
-                   pall    $
-push 4$
-    push 5    $
-      push    6        $
-pall$
+user@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ cat test/push_pall.m
+push 1
+push 2
+push 3
+pall
 ```
 The output will be:
 ```
-user@ubuntu:~/0x18. Stack (LIFO) & queue (FIFO)$ ./monty test/b.m
+user@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ ./monty test/push_pall.m
 3
 2
 1
-0
-6
-5
-4
-3
-2
-1
-0
 ```
-
+* add, sub examples:
+```
+user@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ cat test/add.m 
+push 1
+push 2
+push 3
+pall
+add
+pall
+user@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ ./monty test/add.m 
+3
+2
+1
+5
+1
+user@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ cat test/sub.m
+push 1
+push 2
+push 10
+push 3
+sub
+pall
+user@ubuntu:~/0x19. Stack (LIFO) & queue (FIFO)$ ./monty test/sub.m 
+7
+2
+1
+```
 ## Opcodes
 
 * push - Push an elements to the stack.
